@@ -48,10 +48,33 @@ def get_specific_information(ticker_name, options, date = None):
 # e.g. get_specific_information("AAPL", 1, "2022-10-10")
 
 def get_company_stock_information(ticker_name, start_time, end_time, period_stock):
-    dataframe = pd.DataFrame()
-    stocks = ticker_name
-    for stock in stocks:
-        dataframe[stock] = yf.Ticker(stock).history(start_time = start_time, end_time = end_time)[period_stock]
-    return dataframe
-
+    try:
+        dataframe = pd.DataFrame()
+        stocks = ticker_name
+        for stock in stocks:
+            dataframe[stock] = yf.Ticker(stock).history(start_time = start_time, end_time = end_time)[period_stock]
+        return dataframe
+    except ValueError as e:
+        print("Introduce the correct format of date. YYYY-MM-DD. \n", e)
 # e.g. get_company_stock_information(["AAPL", "AMZN"], "2022-10-01", "2022-10-20", "Close")
+
+def found_index_date(dataframe, date):
+    dataframe_reset = dataframe.reset_index()
+    dataframe_new = []
+    for row in dataframe_reset["Date"]:
+        information_row = str(row)[0:10]
+        dataframe_new.append(information_row)
+    dataframe_concat = pd.DataFrame(dataframe_new).rename(columns = {0:"Dates"})
+    dataframe_result = pd.concat([dataframe.reset_index(), dataframe_concat], axis = 1)
+    dataframe_result = dataframe_result.drop(["Date"], axis = 1)
+    indexs = dataframe_result.index[dataframe_result["Dates"]==date].tolist()
+    print(f'The index of date {date} is {indexs[0]}.')
+
+# e.g. found_index_date(dataframe, "2022-10-20")
+"""
+    First, you need to create a dataframe using the function: get_company_stock_information().
+    Next, you need to store that dataframe in a variable. e.g. dataframe = get_company_stock_information().
+    Then, you must introduce the variable in the function with the other parameter: found_index_date().
+    Finally, you will get the index of the date you were looking for.
+"""
+    
