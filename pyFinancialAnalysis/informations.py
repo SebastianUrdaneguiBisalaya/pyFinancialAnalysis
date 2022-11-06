@@ -45,4 +45,13 @@ def get_specific_information(ticker_name, options, date = None):
     else:
         print("The introduced options are incorrect. Please, introduce options between 1 and 7.")    
 
-# get_specific_information("AAPL", 1, "2022-10-10")
+# e.g. get_specific_information("AAPL", 1, "2022-10-10")
+
+def get_company_stock_information(ticker_name, start_time, end_time, period_stock):
+    dataframe = pd.DataFrame()
+    stocks = ticker_name
+    for stock in stocks:
+        dataframe[stock] = yf.Ticker(stock).history(start_time = start_time, end_time = end_time)[period_stock]
+    return dataframe
+
+# e.g. get_company_stock_information(["AAPL", "AMZN"], "2022-10-01", "2022-10-20", "Close")
