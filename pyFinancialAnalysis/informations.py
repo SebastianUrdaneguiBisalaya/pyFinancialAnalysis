@@ -44,3 +44,5 @@ def get_specific_information(ticker_name, options, date = None):
         return stock.recommendations.sort_values("Date", ascending=False).head(15)
     else:
         print("The introduced options are incorrect. Please, introduce options between 1 and 7.")    
+
+# get_specific_information("AAPL", 1, "2022-10-10")
