@@ -8,6 +8,8 @@ def get_basic_information_company(ticker_name):
     serie_info = pd.Series(stock_info)
     return serie_info
 
+# e.g. get_basic_information_company("AAPL")
+
 def get_specific_information(ticker_name, options, date = None):
     stock = yf.Ticker(ticker_name)
     if options == 1:
@@ -26,11 +28,17 @@ def get_specific_information(ticker_name, options, date = None):
         print(f'Dividends of {ticker_name}')
         return pd.DataFrame(stock.dividends).reset_index()
     elif options == 5:
-        print(f'Option Calls of {ticker_name}')
-        return stock.option_chain(date).calls
+        try:
+            print(f'Option Calls of {ticker_name}')
+            return stock.option_chain(date).calls
+        except ValueError as e:
+            print("Introduce the date available in the format YYYY-MM-DD. \n", e)
     elif options == 6:
-        print(f'Option Puts of {ticker_name}')
-        return stock.option_chain(date).puts
+        try:
+            print(f'Option Puts of {ticker_name}')
+            return stock.option_chain(date).puts
+        except ValueError as e:
+            print("Introduce the date available in the format YYYY-MM-DD. \n", e)
     elif options == 7:
         print("Recommendations Market")
         return stock.recommendations.sort_values("Date", ascending=False).head(15)
