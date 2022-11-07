@@ -18,7 +18,21 @@ def stock_base_growth(stock_dataframe, dates):
     stock_dataframe_growth_base = (stock_dataframe/stock_dataframe.iloc[indexs])*100
     return stock_dataframe_growth_base
 
-# Stock standard deviation
+# Stock mean analysis
+
+def average_stock_growth(stock_dataframe):
+    stock_dataframe_average_growth = stock_growth(stock_dataframe)
+    stock_dataframe_average_growth = pd.DataFrame(stock_dataframe_average_growth.mean())
+    stock_dataframe_average_growth = stock_dataframe_average_growth.rename(columns = {0 : "Stocks average growth"})
+    return stock_dataframe_average_growth
+
+def average_stock_growth_base(stock_dataframe, dates):
+    indexs = find_index_date(stock_dataframe, dates)
+    
+
+
+
+
 
 
 
