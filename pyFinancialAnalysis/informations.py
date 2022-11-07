@@ -1,5 +1,7 @@
+# Import libraries of Python
 import pandas as pd
 
+# Import external libraries of Python
 import yfinance as yf
 
 def get_basic_information_company(ticker_name):
