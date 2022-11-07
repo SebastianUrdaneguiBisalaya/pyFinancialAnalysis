@@ -44,7 +44,7 @@ def stock_standard_deviation(stock_dataframe):
     stock_standard_deviation_dataframe = stock_standard_deviation_dataframe.rename(columns = {0 : "Stocks standard deviation"})
     return stock_standard_deviation_dataframe
 
-def stock_standard_deviation(stock_dataframe, dates):
+def stock_standard_deviation_base(stock_dataframe, dates):
     indexs = find_index_date(stock_dataframe, dates)
     stock_standard_deviation_base_dataframe = stock_base_growth(stock_dataframe, indexs)
     stock_standard_deviation_base_dataframe = pd.DataFrame(np.std(stock_standard_deviation_base_dataframe))
