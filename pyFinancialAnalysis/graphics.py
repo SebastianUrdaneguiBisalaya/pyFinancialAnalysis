@@ -9,6 +9,7 @@ import seaborn as sns
 import plotly
 import plotly.express as px
 import plotly.graph_objects as go
+import plotly.figure_factory as ff
 from tqdm import tqdm
 
 # Import external libraries
@@ -113,8 +114,10 @@ def stock_chart_candlestick(ticker_name, start_time, end_time):
     
     fig.show()
     
-def stock_average_growth_graph_bar(ticker_name, start_time, end_time, period_stock):
-    stock_dataframe = get_company_stock_information(ticker_name, start_time, end_time, period_stock)
+def stock_average_growth_graph_bar(stock_dataframe):
+    """
+    
+    """
     stock_dataframe_growth = average_stock_growth(stock_dataframe)
     stock_dataframe_growth = stock_dataframe_growth.reset_index()
     stock_dataframe_growth = stock_dataframe_growth.rename(columns = {"index" : "Company"})
@@ -127,6 +130,112 @@ def stock_average_growth_graph_bar(ticker_name, start_time, end_time, period_sto
                  color = "Company")
     fig.update_layout(title = "Average Stock Growth Bar Chart (%)")
     fig.show()
+
+def stock_average_growth_base_graph_bar(stock_dataframe, dates):
+    """
+    
+    """
+    stock_dataframe_growth_base = average_stock_growth_base(stock_dataframe, dates)
+    stock_dataframe_growth_base = stock_dataframe_growth_base.reset_index()
+    stock_dataframe_growth_base = stock_dataframe_growth_base.rename(columns = {"index" : "Company"})
+    stock_dataframe_growth_base = round(stock_dataframe_growth_base, 2)
+    
+    fig = px.bar(stock_dataframe_growth_base,
+                 x = "Company",
+                 y = "Stocks average growth base",
+                 text_auto = "2.0s", color = "Company")
+    fig.update_layout(title = "Average Stock Growth Base Bar Chart (%)")
+    fig.show()
+
+def stock_standard_deviation_graph_bar(stock_dataframe):
+    """
+    
+    """
+    stock_dataframe_standard_deviation = stock_standard_deviation(stock_dataframe)
+    stock_dataframe_standard_deviation = stock_dataframe_standard_deviation.reset_index()
+    stock_dataframe_standard_deviation = stock_dataframe_standard_deviation.rename(columns = {"index" : "Company"})
+    stock_dataframe_standard_deviation = round(stock_dataframe_standard_deviation, 2)
+    
+    fig = px.bar(stock_dataframe_standard_deviation, 
+                 x = "Company",
+                 y = "Stocks standard deviation",
+                 text_auto = "2.0s",
+                 color = "Company")
+    fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
+    fig.show()
+    
+def stock_standard_deviation_base_graph_bar(stock_dataframe, dates):
+    """
+    
+    """
+    stock_dataframe_standard_deviation_base = stock_standard_deviation_base(stock_dataframe, dates)
+    stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.reset_index()
+    stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.rename(columns = {"index" : "Company"})
+    stock_dataframe_standard_deviation_base = round(stock_dataframe_standard_deviation_base, 2)
+    
+    fig = px.bar(stock_dataframe_standard_deviation_base,
+                 x = "Company",
+                 y = "Stocks standard deviation",
+                 text_auto = "2.0s",
+                 color = "Company")
+    fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
+    fig.show()
+
+def stock_histogram(stock_ticker, start_time, end_time, period_stock):
+    """
+    
+    """
+    stock_dataframe = get_company_stock_information(stock_ticker, start_time, end_time, period_stock)
+    name_columns = np.array(stock_dataframe.columns)
+    if len(stock_ticker) == 1:
+        x1 = np.array(stock_dataframe[name_columns[0]])
+        hist_data = [x1]
+        group_labels = stock_ticker
+        fig = ff.create_distplot(hist_data, group_labels, bin_size = 2)
+        fig.show()
+    elif len(stock_ticker) == 2:
+        x1 = np.array(stock_dataframe[name_columns[0]])
+        x2 = np.array(stock_dataframe[name_columns[1]])
+        hist_data = [x1, x2]
+        group_labels = stock_ticker
+        fig = ff.create_distplot(hist_data, group_labels, bin_size = 2)
+        fig.show()
+    elif len(stock_ticker) == 3:
+        x1 = np.array(stock_dataframe[name_columns[0]])
+        x2 = np.array(stock_dataframe[name_columns[1]])
+        x3 = np.array(stock_dataframe[name_columns[2]])
+        hist_data = [x1, x2, x3]
+        group_labels = stock_ticker
+        fig = ff.create_distplot(hist_data, group_labels, bin_size = 2)
+        fig.show()
+    elif len(stock_ticker) == 4:
+        x1 = np.array(stock_dataframe[name_columns[0]])
+        x2 = np.array(stock_dataframe[name_columns[1]])
+        x3 = np.array(stock_dataframe[name_columns[2]])
+        x4 = np.array(stock_dataframe[name_columns[3]])
+        hist_data = [x1, x2, x3, x4]
+        group_labels = stock_ticker
+        fig = ff.create_distplot(hist_data, group_labels, bin_size = 2)
+        fig.show()
+    elif len(stock_ticker) == 5:
+        x1 = np.array(stock_dataframe[name_columns[0]])
+        x2 = np.array(stock_dataframe[name_columns[1]])
+        x3 = np.array(stock_dataframe[name_columns[2]])
+        x4 = np.array(stock_dataframe[name_columns[3]])
+        x5 = np.array(stock_dataframe[name_columns[4]])
+        group_labels = stock_ticker
+        hist_data = [x1, x2, x3, x4, x5]
+        fig = ff.create_distplot(hist_data, group_labels, bin_size = 2)
+        fig.show()
+    else:
+        print("Introduce a maximum of 5 share names and a minimum of 1")
+
+def stock_histplot():
+    """
+    
+    """
+    pass
+
 
 """
 How to use these function to make graphs?
