@@ -226,17 +226,45 @@ def stock_histogram(stock_ticker, start_time, end_time, period_stock):
         group_labels = stock_ticker
         hist_data = [x1, x2, x3, x4, x5]
         fig = ff.create_distplot(hist_data, group_labels, bin_size = 2)
+        fig.update_layout(title = "Histogram of stocks")
         fig.show()
     else:
         print("Introduce a maximum of 5 share names and a minimum of 1")
 
-def stock_histplot():
+def stock_histplot(ticker_name, start_time, end_time, period_stock):
     """
     
     """
-    pass
+    count = 1
+    count_color = 0
+    colors = ["orange", "blue", "red", "green", "black", "brown", "magenta","gray"]
+    tickers_names = ticker_name
+    
+    for i in ticker_name:
+        stock_dataframe = get_company_stock_information(ticker_name, start_time, end_time, period_stock).reset_index()
+        stock_dataframe_columns = stock_dataframe.columns[count]
+        fig, ax = plt.subplots(figsize = (12,8), dpi = 60)
+        ax = sns.histplot(data = stock_dataframe,
+                        x = stock_dataframe[stock_dataframe_columns],
+                        kde = True,
+                        color = colors[count_color])
+        plt.title(f'Histplot of {tickers_names[count_color]} stock', size = 16)
+        plt.ylabel("Count", size = 12)
+        count_color += 1
+        count += 1
+        for i in ['bottom', 'left']:
+            ax.spines[i].set_color('black')
+        ax.spines[i].set_linewidth(1.5) 
+        right_side = ax.spines["right"]
+        right_side.set_visible(False)
+        top_side = ax.spines["top"]
+        top_side.set_visible(False)
+        ax.set_axisbelow(True)
+        ax.grid(color='gray', linewidth=1, axis='y', alpha=0.4)
+        plt.show()
 
-
+if __name__ == "__main__":
+    stock_histplot(["AAPL", "AMZN"], "2022-10-01", "2022-10-30", "Close")
 """
 How to use these function to make graphs?
 
