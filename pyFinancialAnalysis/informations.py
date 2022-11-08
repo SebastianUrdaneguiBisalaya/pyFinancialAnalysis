@@ -54,7 +54,7 @@ def get_company_stock_information(ticker_name, start_time, end_time, period_stoc
         dataframe = pd.DataFrame()
         stocks = ticker_name
         for stock in stocks:
-            dataframe[stock] = yf.Ticker(stock).history(start_time = start_time, end_time = end_time)[period_stock]
+            dataframe[stock] = yf.Ticker(stock).history(start = start_time, end = end_time)[period_stock]
         return dataframe
     except ValueError as e:
         print("Introduce the correct format of date. YYYY-MM-DD. \n", e)
@@ -83,4 +83,3 @@ def find_index_date(dataframe, date):
     Then, you must introduce the variable in the function with the other parameter: find_index_date().
     Finally, you will get the index of the date you were looking for.
 """
-    

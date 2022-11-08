@@ -39,7 +39,7 @@ def stock_price_graph_linear(stock_dataframe):
     # Style of grid
     for i in ['bottom', 'left']:
         ax.spines[i].set_color('black')
-    ax.spines[i].set_linewidth(1.5) 
+        ax.spines[i].set_linewidth(1.5) 
     right_side = ax.spines["right"]
     right_side.set_visible(False)
     top_side = ax.spines["top"]
@@ -62,7 +62,7 @@ def stock_price_growth_graph(stock_dataframe):
     # Style of grid
     for i in ['bottom', 'left']:
         ax.spines[i].set_color('black')
-    ax.spines[i].set_linewidth(1.5) 
+        ax.spines[i].set_linewidth(1.5) 
     right_side = ax.spines["right"]
     right_side.set_visible(False)
     top_side = ax.spines["top"]
@@ -87,7 +87,7 @@ def stock_price_growth_base_graph(stock_dataframe, dates):
     # Style of grid
     for i in ['bottom', 'left']:
         ax.spines[i].set_color('black')
-    ax.spines[i].set_linewidth(1.5) 
+        ax.spines[i].set_linewidth(1.5) 
     right_side = ax.spines["right"]
     right_side.set_visible(False)
     top_side = ax.spines["top"]
@@ -254,7 +254,7 @@ def stock_histplot(ticker_name, start_time, end_time, period_stock):
         count += 1
         for i in ['bottom', 'left']:
             ax.spines[i].set_color('black')
-        ax.spines[i].set_linewidth(1.5) 
+            ax.spines[i].set_linewidth(1.5) 
         right_side = ax.spines["right"]
         right_side.set_visible(False)
         top_side = ax.spines["top"]
@@ -262,10 +262,3 @@ def stock_histplot(ticker_name, start_time, end_time, period_stock):
         ax.set_axisbelow(True)
         ax.grid(color='gray', linewidth=1, axis='y', alpha=0.4)
         plt.show()
-
-if __name__ == "__main__":
-    stock_histplot(["AAPL", "AMZN"], "2022-10-01", "2022-10-30", "Close")
-"""
-How to use these function to make graphs?
-
-"""

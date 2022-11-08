@@ -21,8 +21,6 @@ def stock_base_growth(stock_dataframe, dates):
     stock_dataframe_growth_base = stock_dataframe_growth_base.dropna()
     return stock_dataframe_growth_base
 
-# Stock mean analysis
-
 def average_stock_growth(stock_dataframe):
     stock_dataframe_average_growth = stock_growth(stock_dataframe)
     stock_dataframe_average_growth = pd.DataFrame(stock_dataframe_average_growth.mean())
