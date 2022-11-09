@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import datetime
 from datetime import datetime
+import scipy
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -152,10 +153,9 @@ def stock_average_growth_base_graph_bar(stock_dataframe, dates):
                     text_auto = "2.0s", color = "Company")
         fig.update_layout(title = "Average Stock Growth Base Bar Chart (%)")
         fig.show()
-    except IndexError as e:
-        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
-        print("The base date may not be in the Yahoo Finance database.")
-        print("Error is: ", e)
+    except TypeError as te:
+        print("The key of value isn't exist in the dataframe.")
+        print("Error: ", te)
 
 def stock_standard_deviation_graph_bar(stock_dataframe):
     """
@@ -178,23 +178,19 @@ def stock_standard_deviation_base_graph_bar(stock_dataframe, dates):
     """
     
     """
-    try:
-        stock_dataframe_standard_deviation_base = stock_standard_deviation_base(stock_dataframe, dates)
-        stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.reset_index()
-        stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.rename(columns = {"index" : "Company"})
-        stock_dataframe_standard_deviation_base = round(stock_dataframe_standard_deviation_base, 2)
-        
-        fig = px.bar(stock_dataframe_standard_deviation_base,
-                    x = "Company",
-                    y = "Stocks standard deviation",
-                    text_auto = "2.0s",
-                    color = "Company")
-        fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
-        fig.show()
-    except IndexError as e:
-        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
-        print("The base date may not be in the Yahoo Finance database.")
-        print("Error is: ", e)
+    stock_dataframe_standard_deviation_base = stock_standard_deviation_base(stock_dataframe, dates)
+    stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.reset_index()
+    stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.rename(columns = {"index" : "Company"})
+    stock_dataframe_standard_deviation_base = round(stock_dataframe_standard_deviation_base, 2)
+    
+    fig = px.bar(stock_dataframe_standard_deviation_base,
+                x = "Company",
+                y = "Stocks standard deviation",
+                text_auto = "2.0s",
+                color = "Company")
+    fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
+    fig.show()
+
 
 def stock_histogram(stock_ticker, start_time, end_time, period_stock):
     """
@@ -246,6 +242,7 @@ def stock_histogram(stock_ticker, start_time, end_time, period_stock):
     else:
         print("Introduce a maximum of 5 share names and a minimum of 1")
 
+    
 def stock_histplot(ticker_name, start_time, end_time, period_stock):
     """
     

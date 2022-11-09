@@ -60,7 +60,7 @@ def get_company_stock_information(ticker_name, start_time, end_time, period_stoc
         print("Introduce the correct format of date. YYYY-MM-DD. \n", e)
 # e.g. get_company_stock_information(["AAPL", "AMZN"], "2022-10-01", "2022-10-20", "Close")
 
-def find_index_date(dataframe, date):
+def find_index_date(dataframe, dates):
     try: 
         dataframe_reset = dataframe.reset_index()
         dataframe_new = []
@@ -70,7 +70,7 @@ def find_index_date(dataframe, date):
         dataframe_concat = pd.DataFrame(dataframe_new).rename(columns = {0:"Dates"})
         dataframe_result = pd.concat([dataframe.reset_index(), dataframe_concat], axis = 1)
         dataframe_result = dataframe_result.drop(["Date"], axis = 1)
-        indexs = dataframe_result.index[dataframe_result["Dates"]==date].tolist()
+        indexs = dataframe_result.index[dataframe_result["Dates"]==dates].tolist()
         return indexs[0]
         # print(f'The index of date {date} is {indexs[0]}.')
     except ValueError as e:
@@ -79,6 +79,9 @@ def find_index_date(dataframe, date):
         print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
         print("The base date may not be in the Yahoo Finance database.")
         print("Error is: ", ie)
+    except TypeError as te:
+        print("The key of value isn't exist in the dataframe.")
+        print("Error: ", te)
 
 # e.g. found_index_date(dataframe, "2022-10-20")
 """

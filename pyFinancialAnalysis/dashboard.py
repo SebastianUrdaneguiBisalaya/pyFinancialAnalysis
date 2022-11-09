@@ -136,12 +136,11 @@ def financial_dashboard(stock_dataframe, dates):
         
         plt.show()
     
-    except IndexError as e:
-        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
-        print("The base date may not be in the Yahoo Finance database.")
-        print("Error is: ", e)
+    except TypeError as te:
+        print("The key of value isn't exist in the dataframe.")
+        print("Error: ", te)
     
 # if __name__ == "__main__":
 #     stocks = get_company_stock_information(["AAPL", "AMZN"], "2021-01-01", "2022-10-30", period_stock="Close")
 #     # print(stock_base_growth(stocks, "2022-10-17"))
-#     financial_dashboard(stocks, "2022-10-15")
+#     financial_dashboard(stocks, "2022-10-17")
