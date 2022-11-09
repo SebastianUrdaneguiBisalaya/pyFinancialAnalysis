@@ -1,0 +1,37 @@
+Metadata-Version: 1.1
+Name: pyFinancialAnalysis
+Version: 1.0.0
+Summary: UNKNOWN
+Home-page: https://github.com/SebastianUrdaneguiBisalaya/pyFinancialAnalysis
+Author: Sebastian Marat Urdanegui Bisalaya
+Author-email: sebasurdanegui@gmail.com
+License: MIT
+Description: # pyFinancialAnalysis
+        This Python package allows you to perform financial analysis with just a few lines of code. It not only focuses on mathematical analysis, but also on visual analysis through graphics. Finally, you can generate a dashboard with the most important statistical elements to make decisions.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2 :: Only
+Classifier: Programming Language :: Python :: 2.3
+Classifier: Programming Language :: Python :: 2.4
+Classifier: Programming Language :: Python :: 2.5
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.0
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12

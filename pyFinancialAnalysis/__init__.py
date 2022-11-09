@@ -1,4 +1,4 @@
-from pyFinancialAnalysis import *
+from pyFinancialAnalysis.informations import *
 from pyFinancialAnalysis.analysis import *
 from pyFinancialAnalysis.graphics import *
 from pyFinancialAnalysis.dashboard import *
