@@ -13,7 +13,7 @@ def read(filename):
 
 setup(
     name="pyFinancialAnalysis",
-    version="1.0.2",
+    version="1.0.4",
     url="https://github.com/SebastianUrdaneguiBisalaya/pyFinancialAnalysis",
     license="MIT",
     
