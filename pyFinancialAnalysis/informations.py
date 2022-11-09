@@ -34,13 +34,13 @@ def get_specific_information(ticker_name, options, date = None):
             print(f'Option Calls of {ticker_name}')
             return stock.option_chain(date).calls
         except ValueError as e:
-            print("Introduce the date available in the format YYYY-MM-DD. \n", e)
+            print("Introduce the date available in the format YYYY-MM-DD.\n",e)
     elif options == 6:
         try:
             print(f'Option Puts of {ticker_name}')
             return stock.option_chain(date).puts
         except ValueError as e:
-            print("Introduce the date available in the format YYYY-MM-DD. \n", e)
+            print("Introduce the date available in the format YYYY-MM-DD.\n",e)
     elif options == 7:
         print("Recommendations Market")
         return stock.recommendations.sort_values("Date", ascending=False).head(15)
@@ -57,7 +57,7 @@ def get_company_stock_information(ticker_name, start_time, end_time, period_stoc
             dataframe[stock] = yf.Ticker(stock).history(start = start_time, end = end_time)[period_stock]
         return dataframe
     except ValueError as e:
-        print("Introduce the correct format of date. YYYY-MM-DD. \n", e)
+        print("Introduce the correct format of date. YYYY-MM-DD.\n",e)
 # e.g. get_company_stock_information(["AAPL", "AMZN"], "2022-10-01", "2022-10-20", "Close")
 
 def find_index_date(dataframe, dates):

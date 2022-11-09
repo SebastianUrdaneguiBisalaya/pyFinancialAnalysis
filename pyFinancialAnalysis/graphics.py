@@ -32,6 +32,11 @@ def stock_price_graph_linear(stock_dataframe):
     """
     This function displays a linear graph about stock requested by the client.
     Also, it allows you to visualize the trend of the stock.
+    You can enter more than one ticker name in the dataframe, too.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_price_graph_linear(dataframe)
+         
+    Let's go!
     """
     fig, ax = plt.subplots(figsize=(12,7), dpi = 90)
     plt.title("Time Serie Plot", size = "x-large", weight = "bold")
@@ -53,7 +58,12 @@ def stock_price_graph_linear(stock_dataframe):
 
 def stock_price_growth_graph(stock_dataframe):
     """
-    
+    This function allows you to graph the growth of stock.
+    Also, you can enter more than one ticker name in the dataframe.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_price_growth_graph(dataframe)
+         
+    Ready! 
     """
     stock_dataframe_growth = stock_growth(stock_dataframe)
     fig, ax = plt.subplots(figsize = (12,7), dpi = 90)
@@ -74,9 +84,15 @@ def stock_price_growth_graph(stock_dataframe):
     plt.legend(stock_dataframe_growth.columns)
     plt.show()
 
+
 def stock_price_growth_base_graph(stock_dataframe, dates):
     """
-    
+    This function allows you to graph the base growth of stock.
+    Also, you can enter more than one ticker name in the dataframe.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_price_growth_base_graph(dataframe, "2022-10-20")
+         
+    It's beautiful! 
     """
     try:
         stock_dataframe_growth_base = stock_base_growth(stock_dataframe, dates)
@@ -103,10 +119,17 @@ def stock_price_growth_base_graph(stock_dataframe, dates):
         print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
         print("The base date may not be in the Yahoo Finance database.")
         print("Error is: ", e)
-        
+    except TypeError as te:
+        print(te)
+    
 def stock_chart_candlestick(ticker_name, start_time, end_time):
     """
-    
+    This function allows you to graph chart candlestick.
+    Also, you can enter just one ticker name.
+    It's important that you enter the ticker name as a string and not in the list.
+    e.g. stock_chart_candlestick("AAPL", "2022-01-01", "2022-10-30")
+         
+    It's amazing! 
     """
     stock_dataframe = yf.Ticker(ticker_name).history(start = start_time, end = end_time)[["Open", "High", "Low", "Close"]].reset_index()
     
@@ -120,9 +143,15 @@ def stock_chart_candlestick(ticker_name, start_time, end_time):
     
     fig.show()
     
+    
 def stock_average_growth_graph_bar(stock_dataframe):
     """
-    
+    This function allows you to graph bar of growth stocks.
+    Also, you can put more than one ticker name in the dataframe.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_average_growth_graph_bar(dataframe, "2022-10-20")
+         
+    It's great!
     """
     stock_dataframe_growth = average_stock_growth(stock_dataframe)
     stock_dataframe_growth = stock_dataframe_growth.reset_index()
@@ -136,10 +165,16 @@ def stock_average_growth_graph_bar(stock_dataframe):
                  color = "Company")
     fig.update_layout(title = "Average Stock Growth Bar Chart (%)")
     fig.show()
+    
 
 def stock_average_growth_base_graph_bar(stock_dataframe, dates):
     """
-    
+    This function allows you to graph bar of base growth stocks.
+    Also, you can put more than one ticker name in the dataframe.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_average_growth_base_graph_bar(dataframe, "2022-10-20")
+         
+    Let's go!
     """
     try:
         stock_dataframe_growth_base = average_stock_growth_base(stock_dataframe, dates)
@@ -156,10 +191,15 @@ def stock_average_growth_base_graph_bar(stock_dataframe, dates):
     except TypeError as te:
         print("The key of value isn't exist in the dataframe.")
         print("Error: ", te)
-
+    
 def stock_standard_deviation_graph_bar(stock_dataframe):
     """
-    
+    This function allows you to graph bar the standard deviation of growth stocks.
+    Also, you can put more than one ticker name in the dataframe.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_standard_deviation_graph_bar(dataframe)
+         
+    It's cool!
     """
     stock_dataframe_standard_deviation = stock_standard_deviation(stock_dataframe)
     stock_dataframe_standard_deviation = stock_dataframe_standard_deviation.reset_index()
@@ -176,7 +216,12 @@ def stock_standard_deviation_graph_bar(stock_dataframe):
     
 def stock_standard_deviation_base_graph_bar(stock_dataframe, dates):
     """
-    
+    This function allows you to graph bar the standard deviation of base growth stocks.
+    Also, you cant put more than one ticker name in the dataframe.
+    e.g. dataframe = get_company_stock_information(["AAPL", "AMZN"], "2022-01-01", "2022-10-30", "Close")
+         stock_standard_deviation_graph_bar(dataframe, "2022-10-17")
+         
+    It's beautiful!
     """
     stock_dataframe_standard_deviation_base = stock_standard_deviation_base(stock_dataframe, dates)
     stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.reset_index()
@@ -191,10 +236,13 @@ def stock_standard_deviation_base_graph_bar(stock_dataframe, dates):
     fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
     fig.show()
 
-
 def stock_histogram(stock_ticker, start_time, end_time, period_stock):
     """
-    
+    This function allows you to graph histogram of stocks.
+    Also, you can enter maximum of 5 ticker name and minimum of 1.
+    e.g. stock_histogram(["AAPL", "AMZN", "TSLA"], "2022-01-01", "2022-10-30", "Close")
+         
+    It's amazing!
     """
     stock_dataframe = get_company_stock_information(stock_ticker, start_time, end_time, period_stock)
     name_columns = np.array(stock_dataframe.columns)
@@ -240,12 +288,15 @@ def stock_histogram(stock_ticker, start_time, end_time, period_stock):
         fig.update_layout(title = "Histogram of stocks")
         fig.show()
     else:
-        print("Introduce a maximum of 5 share names and a minimum of 1")
-
+        print("Introduce a maximum of 5 ticker names and a minimum of 1")
     
 def stock_histplot(ticker_name, start_time, end_time, period_stock):
     """
-    
+    This function allows you to graph histplot of stocks.
+    Also, you can enter n-ticker names, but it's necessary that you enter one ticker name.  
+    e.g. stock_histplot(["AAPL", "AMZN", "TSLA"], "2022-01-01", "2022-10-30", "Close")
+         
+    That is great!
     """
     count = 1
     count_color = 0
