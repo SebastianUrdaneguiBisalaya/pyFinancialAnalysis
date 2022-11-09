@@ -13,7 +13,7 @@ def read(filename):
 
 setup(
     name="pyFinancialAnalysis",
-    version="1.0.1",
+    version="1.0.2",
     url="https://github.com/SebastianUrdaneguiBisalaya/pyFinancialAnalysis",
     license="MIT",
     
@@ -26,7 +26,7 @@ setup(
     packages=find_packages(exclude=("tests",)),
     py_modules=["informations", "analysis", "graphics", "dashboard"],
     
-    install_requires=[i.strip() for i in open("./requirements.txt").readlines()],
+    install_requires=[i.strip() for i in open("requirements.txt").readlines()],
     
     classifiers=[
             'Development Status :: 2 - Pre-Alpha',
