@@ -26,7 +26,9 @@ setup(
     packages=find_packages(exclude=("tests",)),
     py_modules=["informations", "analysis", "graphics", "dashboard"],
     
-    install_requires=[i.strip() for i in open("requirements.txt").readlines()],
+    install_requires=["yfinance", "pandas", "numpy",
+                      "matplotlib", "seaborn", "datetime",
+                      "tqdm", "plotly", "scipy"],
     
     classifiers=[
             'Development Status :: 2 - Pre-Alpha',
