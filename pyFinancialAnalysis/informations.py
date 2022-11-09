@@ -75,6 +75,10 @@ def find_index_date(dataframe, date):
         # print(f'The index of date {date} is {indexs[0]}.')
     except ValueError as e:
         print("Introduce the correct format of date in the function. YYYY-MM-DD. \n", e)
+    except IndexError as ie:
+        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
+        print("The base date may not be in the Yahoo Finance database.")
+        print("Error is: ", ie)
 
 # e.g. found_index_date(dataframe, "2022-10-20")
 """
