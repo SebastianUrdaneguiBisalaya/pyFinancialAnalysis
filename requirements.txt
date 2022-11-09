@@ -7,3 +7,5 @@ datetime
 tqdm
 plotly
 scipy
+pytest
+ipykernel

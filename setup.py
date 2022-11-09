@@ -24,8 +24,7 @@ setup(
     long_description=read("./README.md"),
     
     packages=find_packages(exclude=("tests",)),
-    
-    py_modules=["information", "analysis", "graphics", "dashboard"],
+    py_modules=["informations", "analysis", "graphics", "dashboard"],
     
     install_requires=[i.strip() for i in open("./requirements.txt").readlines()],
     
@@ -56,4 +55,6 @@ setup(
             'Programming Language :: Python :: 3.11',
             'Programming Language :: Python :: 3.12',
         ],
+    
+    test_suite="tests",
 )
