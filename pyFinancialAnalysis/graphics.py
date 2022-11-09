@@ -77,27 +77,32 @@ def stock_price_growth_base_graph(stock_dataframe, dates):
     """
     
     """
-    stock_dataframe_growth_base = stock_base_growth(stock_dataframe, dates)
-    indexs = find_index_date(stock_dataframe, dates)
-    label_base = str(stock_dataframe.index[indexs])[0:10]
-    fig, ax = plt.subplots(figsize = (12,7), dpi = 90)
-    plt.title(f'Growth base of Time Serie (%), Base: {label_base}', size = "x-large", weight = "bold")
-    plt.xlabel("Period", size = "large", weight = "semibold")
-    plt.ylabel("Growth (%)", size = "large", weight = "semibold")
-    # Style of grid
-    for i in ['bottom', 'left']:
-        ax.spines[i].set_color('black')
-        ax.spines[i].set_linewidth(1.5) 
-    right_side = ax.spines["right"]
-    right_side.set_visible(False)
-    top_side = ax.spines["top"]
-    top_side.set_visible(False)
-    ax.set_axisbelow(True)
-    ax.grid(color='gray', linewidth=1, axis='y', alpha=0.4)
-    ax = plt.plot(stock_dataframe_growth_base)
-    plt.legend(stock_dataframe_growth_base.columns)
-    plt.show()
-    
+    try:
+        stock_dataframe_growth_base = stock_base_growth(stock_dataframe, dates)
+        indexs = find_index_date(stock_dataframe, dates)
+        label_base = str(stock_dataframe.index[indexs])[0:10]
+        fig, ax = plt.subplots(figsize = (12,7), dpi = 90)
+        plt.title(f'Growth base of Time Serie (%), Base: {label_base}', size = "x-large", weight = "bold")
+        plt.xlabel("Period", size = "large", weight = "semibold")
+        plt.ylabel("Growth (%)", size = "large", weight = "semibold")
+        # Style of grid
+        for i in ['bottom', 'left']:
+            ax.spines[i].set_color('black')
+            ax.spines[i].set_linewidth(1.5) 
+        right_side = ax.spines["right"]
+        right_side.set_visible(False)
+        top_side = ax.spines["top"]
+        top_side.set_visible(False)
+        ax.set_axisbelow(True)
+        ax.grid(color='gray', linewidth=1, axis='y', alpha=0.4)
+        ax = plt.plot(stock_dataframe_growth_base)
+        plt.legend(stock_dataframe_growth_base.columns)
+        plt.show()
+    except IndexError as e:
+        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
+        print("The base date may not be in the Yahoo Finance database.")
+        print("Error is: ", e)
+        
 def stock_chart_candlestick(ticker_name, start_time, end_time):
     """
     
@@ -135,17 +140,22 @@ def stock_average_growth_base_graph_bar(stock_dataframe, dates):
     """
     
     """
-    stock_dataframe_growth_base = average_stock_growth_base(stock_dataframe, dates)
-    stock_dataframe_growth_base = stock_dataframe_growth_base.reset_index()
-    stock_dataframe_growth_base = stock_dataframe_growth_base.rename(columns = {"index" : "Company"})
-    stock_dataframe_growth_base = round(stock_dataframe_growth_base, 2)
-    
-    fig = px.bar(stock_dataframe_growth_base,
-                 x = "Company",
-                 y = "Stocks average growth base",
-                 text_auto = "2.0s", color = "Company")
-    fig.update_layout(title = "Average Stock Growth Base Bar Chart (%)")
-    fig.show()
+    try:
+        stock_dataframe_growth_base = average_stock_growth_base(stock_dataframe, dates)
+        stock_dataframe_growth_base = stock_dataframe_growth_base.reset_index()
+        stock_dataframe_growth_base = stock_dataframe_growth_base.rename(columns = {"index" : "Company"})
+        stock_dataframe_growth_base = round(stock_dataframe_growth_base, 2)
+        
+        fig = px.bar(stock_dataframe_growth_base,
+                    x = "Company",
+                    y = "Stocks average growth base",
+                    text_auto = "2.0s", color = "Company")
+        fig.update_layout(title = "Average Stock Growth Base Bar Chart (%)")
+        fig.show()
+    except IndexError as e:
+        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
+        print("The base date may not be in the Yahoo Finance database.")
+        print("Error is: ", e)
 
 def stock_standard_deviation_graph_bar(stock_dataframe):
     """
@@ -168,18 +178,23 @@ def stock_standard_deviation_base_graph_bar(stock_dataframe, dates):
     """
     
     """
-    stock_dataframe_standard_deviation_base = stock_standard_deviation_base(stock_dataframe, dates)
-    stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.reset_index()
-    stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.rename(columns = {"index" : "Company"})
-    stock_dataframe_standard_deviation_base = round(stock_dataframe_standard_deviation_base, 2)
-    
-    fig = px.bar(stock_dataframe_standard_deviation_base,
-                 x = "Company",
-                 y = "Stocks standard deviation",
-                 text_auto = "2.0s",
-                 color = "Company")
-    fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
-    fig.show()
+    try:
+        stock_dataframe_standard_deviation_base = stock_standard_deviation_base(stock_dataframe, dates)
+        stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.reset_index()
+        stock_dataframe_standard_deviation_base = stock_dataframe_standard_deviation_base.rename(columns = {"index" : "Company"})
+        stock_dataframe_standard_deviation_base = round(stock_dataframe_standard_deviation_base, 2)
+        
+        fig = px.bar(stock_dataframe_standard_deviation_base,
+                    x = "Company",
+                    y = "Stocks standard deviation",
+                    text_auto = "2.0s",
+                    color = "Company")
+        fig.update_layout(title = "Standard Deviation of Stock Growth (%)")
+        fig.show()
+    except IndexError as e:
+        print("The base date entered isn't in the range of the dataframe. \nPlease, enter another base date.")
+        print("The base date may not be in the Yahoo Finance database.")
+        print("Error is: ", e)
 
 def stock_histogram(stock_ticker, start_time, end_time, period_stock):
     """
