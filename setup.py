@@ -4,7 +4,6 @@ import re
 
 from setuptools import setup
 from setuptools import find_packages
-from setuptools import Extension
 
 def read(filename):
     filename = os.path.join(os.path.dirname(__file__), filename)
