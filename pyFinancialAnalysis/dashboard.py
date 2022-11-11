@@ -7,16 +7,16 @@ from datetime import datetime
 
 
 # Import our modules of Python
-from informations import get_company_stock_information
-from informations import find_index_date
-from analysis import stock_growth
-from analysis import stock_base_growth
-from analysis import average_stock_growth
-from analysis import average_stock_growth_base
-from analysis import stock_standard_deviation
-from analysis import stock_standard_deviation_base
-from analysis import stock_variance
-from analysis import stock_variance_base
+from pyFinancialAnalysis.informations import get_company_stock_information
+from pyFinancialAnalysis.informations import find_index_date
+from pyFinancialAnalysis.analysis import stock_growth
+from pyFinancialAnalysis.analysis import stock_base_growth
+from pyFinancialAnalysis.analysis import average_stock_growth
+from pyFinancialAnalysis.analysis import average_stock_growth_base
+from pyFinancialAnalysis.analysis import stock_standard_deviation
+from pyFinancialAnalysis.analysis import stock_standard_deviation_base
+from pyFinancialAnalysis.analysis import stock_variance
+from pyFinancialAnalysis.analysis import stock_variance_base
 
 now = datetime.now()
 

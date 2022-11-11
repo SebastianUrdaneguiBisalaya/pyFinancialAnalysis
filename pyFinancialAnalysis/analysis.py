@@ -4,9 +4,8 @@ import pandas as pd
 import numpy as np
 
 # Import our own modules of Python
-
-from informations import find_index_date
-from informations import get_company_stock_information
+from pyFinancialAnalysis.informations import find_index_date
+from pyFinancialAnalysis.informations import get_company_stock_information
 
 # Stock performance analysis
 
