@@ -131,7 +131,7 @@ def financial_dashboard(stock_dataframe, dates):
         ax5.set_axisbelow(True)
         ax5.grid(color='gray', linewidth=1, axis='y', alpha=0.4)
         
-        plt.suptitle(f'Financial Analysis Dashboard\n{now.year}-{now.month}-{now.day}\n{now.hour}:{now.minute}:{now.second}\n', size = 18)
+        plt.suptitle(f'Financial Analysis Dashboard\n{now.year}-{now.month}-{now.day}\n', size = 18)
         plt.subplots_adjust(wspace=0.193, hspace=0.333, left=0.057, right=0.943, top=0.86, bottom=0.082)
         
         plt.show()
