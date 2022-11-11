@@ -1,5 +1,0 @@
-analysis
-dashboard
-graphics
-informations
-pyFinancialAnalysis
